@@ -1,0 +1,68 @@
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+let conf = {
+  entry: "./src/index.tsx",
+  output: {
+    path: path.join(__dirname, "/dist"),
+    filename: "bundle.js"
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html"
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "main.css",
+      chunkFilename: "main.css"
+    })
+  ],
+  resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    extensions: [".ts", ".tsx"]
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "awesome-typescript-loader"
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // only enable hot in development
+              hmr: process.env.NODE_ENV === "development",
+              // if hmr does not work, this is a forceful method.
+              reloadAll: true
+            }
+          },
+          "css-loader"
+        ]
+      },
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader"
+      }
+    ]
+  }
+};
+
+module.exports = conf;
+
+// (env, options) => {
+//   let production = options.mode === "production";
+//   conf.devtool = production ? "source-map" : "eval-source-map ";
+//   return conf;
+// };
