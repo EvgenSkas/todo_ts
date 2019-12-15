@@ -1,6 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TSLintPlugin = require("tslint-webpack-plugin");
+//const TSLintPlugin = require("tslint-webpack-plugin");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./index.html"
@@ -11,9 +11,9 @@ const cssExtractPlugin = new MiniCssExtractPlugin({
   chunkFilename: "main.css"
 });
 
-const tsLintPlugin = new TSLintPlugin({
-  files: ["./src/**/*.ts"]
-});
+// const tsLintPlugin = new TSLintPlugin({
+//   files: ["./src/**/*.ts"]
+// });
 
 module.exports = {
   mode: "development",
@@ -41,7 +41,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [htmlPlugin, cssExtractPlugin, tsLintPlugin]
+  plugins: [htmlPlugin, cssExtractPlugin]
 };
-
-// export default config;
