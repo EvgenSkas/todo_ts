@@ -1,15 +1,15 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Link,
   RouteProps,
-  Switch
-} from "react-router-dom";
+  Switch,
+} from 'react-router-dom';
 
-import About from "./About";
-import Profile from "./Profile";
-import News from "./News";
+import About from './About';
+import Profile from './Profile';
+import News from './News';
 
 interface IAppProps extends RouteProps {
   name: string;

@@ -1,13 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { INewsItem } from "../../store/newsModel";
+import { INewsItem } from '../../store/newsModel';
 
 interface INewsItemProps {
-  data: INewsItem,
+  data: INewsItem;
 }
 
 const NewsItem: React.FC<INewsItemProps> = ({
-  data: { title, text, link, timestamp }
+  data: { title, text, link, timestamp },
 }) => {
   return (
     <div>
